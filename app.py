@@ -5,6 +5,7 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import pickle as pk
 import catboost
+import numpy as np
 from wranglefuncation import wrangle
 
 df = wrangle("telecom_churn.csv") # wrangle function to clean the data
@@ -19,7 +20,7 @@ sidebar_option = st.sidebar.radio("Choose an Option:", ["Overview", "EDA", "Mode
 if sidebar_option == "Overview":
     st.header("Data Overview")
     st.write(f"The Dataset contains {df.shape[0]} rows and {df.shape[1]} columns.")
-    st.write(df.describe())
+    st.write(df.sample(5))
     st.write("The percentage of the Churn classes in the dataset.")
     st.write(df["churn"].value_counts())
     fig, ax = plt.subplots(figsize=(10, 5))
